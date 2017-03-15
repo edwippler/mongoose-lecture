@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "test": "nodemon app.js",
     "start": "node app.js"
   },
   "keywords": [],
@@ -15,6 +16,6 @@
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "express": "^4.15.2",
-    "pg": "^6.1.2"
+    "mongoose": "^4.9.0"
   }
 }
