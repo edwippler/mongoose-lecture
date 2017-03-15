@@ -10,7 +10,10 @@
 <button ng-click="tc.addTask()">Add Task</button>
 <div ng-repeat="task in tc.taskList.list" ng-class="{complete: task.status, active: !task.status}" class="row col-xs-12">
   <!-- {{task.name}} and the id number is {{task.id}} -->
-  <span class="col-xs-6">{{task.name}} the status is {{task.status}}</span>
+  <span><input ng-model="task.name" class="col-xs-4"/></span>
+  <span class="col-xs-2">
+    <button ng-click="tc.saveTask(task)" class="btn btn-primary">Save Changes</button>
+  </span>
   <span class="col-xs-3" ng-hide="task.status">
     <button ng-click="tc.completeTask(task._id)" class="btn btn-primary">Complete</button>
   </span>

@@ -122,7 +122,29 @@ router.put('/uncomplete/:id', function(req, res) {
       }
     }
   );
+});
 
+router.put('/save/:id', function(req, res) {
+  var taskToSaveId = req.params.id;
+  var taskObject = req.body;
+  console.log('hit complete route');
+  console.log('here is the id to complete ->', taskToSaveId);
+
+  // db query
+  Task.findByIdAndUpdate(
+    { _id: req.params.id},
+    {
+      $set: {name: taskObject.name}
+    },
+    function(err, result){
+      if (err) {
+        console.log('error updating task,', err);
+        res.sendStatus(500);
+      }else {
+        res.sendStatus(200);
+      }
+    }
+  );
 });
 
 module.exports = router;
