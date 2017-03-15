@@ -11,3 +11,7 @@
 .active {
   color: SeaGreen;
 }
+
+.nav {
+  display: inline-block;;
+}

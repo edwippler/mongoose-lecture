@@ -1,23 +1,8 @@
 
 // tasks.js
 var router = require('express').Router();
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var Task = require('../models/task-model');
 
-mongoose.connect('mongodb://localhost/todo');
-
-mongoose.model(
-  'Task',
-  new Schema({
-    "name":String,
-    "status": { type: Boolean, default: false}
-  },
-  {
-    collection: 'tasks'
-  }
-));
-
-var Task = mongoose.model('Task');
 
 // get all tasks
 router.get('/', function(req, res) {
@@ -40,7 +25,8 @@ router.post('/', function(req, res) {
   var taskObject = req.body;
 
   var addedTask = new Task({
-    name: taskObject.taskName
+    name: taskObject.taskName,
+    description: taskObject.description
   });
 
   // db query
@@ -134,7 +120,7 @@ router.put('/save/:id', function(req, res) {
   Task.findByIdAndUpdate(
     { _id: req.params.id},
     {
-      $set: {name: taskObject.name}
+      $set: {name: taskObject.name, description: taskObject.description}
     },
     function(err, result){
       if (err) {
